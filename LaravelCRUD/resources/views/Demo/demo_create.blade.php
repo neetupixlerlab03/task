@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container test">
   <h2 class="text-center">Crud Operation</h2>
   <br>
   <form action = "{{ route('demos.store') }}" method = "post" class="form-group" style="width:70%; margin-left:15%;" action="/action_page.php">
