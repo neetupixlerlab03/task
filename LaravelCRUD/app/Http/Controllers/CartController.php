@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
@@ -10,18 +11,20 @@ class CartController extends Controller
     {
        
         $cartItems = \Cart::getContent();
-        // dd($cartItems);
+        
         return view('product.cart', compact('cartItems'));
     }
 
 
     public function addToCart(Request $request)
     {
+        
         \Cart::add([
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
+            'product_id'=>$request->product_id,
             'attributes' => array(
                 'image' => $request->image,
             )
@@ -64,4 +67,9 @@ class CartController extends Controller
 
         return redirect()->route('cart.list');
     }
+    public function create()
+   {
+   return view('product.cart');
+   }
+
 }

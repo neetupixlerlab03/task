@@ -14,4 +14,9 @@ class Product extends Model
         'image',
         'description',
     ];
+    public function cart()
+    {
+      return$this->belongsToMany(Cart::class, 'foreign_key', 'local_key');
+
+    }
 }
