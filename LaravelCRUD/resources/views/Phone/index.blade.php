@@ -42,13 +42,13 @@
             <td>{{ $phone->price }}</td>
             <td>{{$phone->description }}</td>
             <td>
-                <form action="{{ route('phones.destroy',$phone->id) }}" method="POST">
-    
-                    <a class="btn btn-primary" href="{{ url('phone',$phone->id) }}">Edit</a>
-   
+                
+            <form action="{{ route('phones.destroyj',$phone->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ url('phone',$phone->id)  }}">Edit</a>
+                    
                     @csrf
-                   
-      
+                  
+                    
                     <button type="submit"  href="{{ url('phone',$phone->id) }}" class="btn btn-danger">Delete</button>
                 </form>
             </td>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AddCart;
-
+use DB;
 class AddCartController extends Controller
 {
     public function addcartList()
@@ -42,36 +42,38 @@ class AddCartController extends Controller
 
     public function updateCart(Request $request)
     {
-        AddCart::update(
-            $request->id,
+        AddCart::where("id", $request->id )->update(
+           
             [
-            'quantity' => [
-            'relative' => false,
-             'value' => $request->quantity
-                ],
+            'quantity' =>  $request->quantity
+              
             ]
         );
 
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
-        return redirect()->route('addcarts.list');
+        return redirect()->route('addcarts.List');
     }
 
-    public function removeCart(Request $request)
+    
+    public function  removeCart($id)
     {
-        AddCart::remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
-
-        return redirect()->route('addcarts.list');
+       
+        AddCart::where("id",$id )->delete();
+        
+    
+        return redirect()->route('addcarts.List');
+                       
     }
 
     public function clearAllCart()
     {
-        AddCart::clear();
+        // AddCart::delete();
+        DB::table('add_carts')->delete();
 
         session()->flash('success', 'All Item Cart Clear Successfully !');
 
-        return redirect()->route('addcarts.list');
+        return redirect()->route('addcarts.List');
     }
     
 

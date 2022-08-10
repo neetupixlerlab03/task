@@ -60,10 +60,10 @@
                                 </span>
                               </td>
                               <td class="hidden text-right md:table-cell">
-                                <form action="{{ route('addcarts.remove') }}" method="POST">
+                                <form action="{{ route('addcarts.delete',[$item->id]) }}" method="POST">
                                   @csrf
-                                  <input type="hidden" value="{{ $item->id }}" name="id">
-                                  <button class="px-4 py-2 text-white bg-red-600">x</button>
+                                  <input type="hidden" value="Remove" name="id">
+                                  <button class="px-4 py-2 text-white bg-red-600">Remove</button>
                               </form>
                                 
                               </td>
@@ -76,7 +76,7 @@
                         
                         </div>
                         <div>
-                          <form action="{{ route('addcarts.clear') }}" method="POST">
+                          <form action="{{ route('addcarts.clear')}}" method="POST">
                             @csrf
                             <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
                           </form>

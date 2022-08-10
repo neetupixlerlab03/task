@@ -66,12 +66,14 @@ class PhoneController extends Controller
          $phone->save();
         return redirect()->route('phones.index');
         }
-        public function destroy($id)
-        {
-            
+
+
+        public function destroy(Request $request,$id)
+    {
+        $phone = Phone::destroy($id);
         
-        $phone = Phone::find($id);
-        return redirect()->route('phones.index' ,$phone->id);
+        $request->session()->flash('message', 'Successfully deleted ');
+        return redirect('phone');
     }
 }
     
