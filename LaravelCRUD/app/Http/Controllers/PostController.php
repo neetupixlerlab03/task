@@ -14,9 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data['posts'] = Post::orderBy('id','desc')->paginate(5);
+        $data['posts'] = Post::orderBy('id')->paginate();
     
-        return view('index', $data);
+        return view('posts.index', $data);
     }
      
     /**
@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('posts.create');
     }
     
     /**
@@ -42,13 +42,9 @@ class PostController extends Controller
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'description' => 'required',
         ]);
-       
         $path = $request->file('image')->store('public/images');
-        echo"<pre>";
-        print_r($path);
-        die();
         $post = new Post;
-        $post->title = $rquest->title;
+        $post->title = $request->title;
         $post->description = $request->description;
         $post->image = $path;
         $post->save();
@@ -76,7 +72,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('edit',compact('post'));
+        return view('posts.edit',compact('post'));
     }
     
     /**
