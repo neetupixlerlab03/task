@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('quantity');
             $table->double('price');
-            $table->integer('phone_id')->unsigned();
+            $table->integer('phone_id');
+           $table->id('user_id');
             $table->timestamps();
         });
     }

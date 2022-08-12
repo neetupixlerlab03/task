@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class AddCart extends Model
 {
-    
     use HasFactory;
-    protected $fillable = ["quantity",	"price", "phone_id",	"created_at",	"updated_at"];
-    public function newproduct()
+    protected $fillable = ["quantity",	"price", "phone_id",	"user_id", "created_at",	"updated_at"];
+    public function phone()
     {
       return$this->belongsToMany(Phone::class,'foreign_key', 'local_key');
 }

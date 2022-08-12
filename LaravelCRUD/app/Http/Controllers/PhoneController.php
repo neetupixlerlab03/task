@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 use App\Models\Phone;
 use Illuminate\Http\Request;
+use Auth;
 class PhoneController extends Controller
 {
  public function PhoneList()
     {
-     $phones = Phone::all();
+        if(!Auth::user()){
+            return redirect('login');
+        }
+        $phones = Phone::all();
         return view('Phone.phone', compact('phones'));
     }
     public function index()

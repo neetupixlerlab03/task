@@ -6,7 +6,8 @@ use App\Http\Controllers\DemoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\AddCartController;
-
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\Auth\AuthController;
 
 
 
@@ -46,8 +47,18 @@ Route::post('addcarts/store', [AddCartController::class, 'addToCart'])->name('ad
 Route::post('addcarts/update-cart', [AddCartController::class, 'updateCart'])->name('addcarts.update');
 Route::post('addcarts/delete/{id}', [AddCartController::class, 'removeCart'])->name('addcarts.delete');
 Route::post('addcarts/clear', [AddCartController::class, 'clearAllCart'])->name('addcarts.clear');
+//Test Controller
+Route::get('tests',[TestController::class,'index']);
+Route::get('tests/create',[TestController::class,'create'])->name('tests.create');
+Route::post('store',[TestController::class,'store'])->name('tests.store');
+//authontication 
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::get('dashboard', [AuthController::class, 'dashboard']);
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
- 
 
 
 

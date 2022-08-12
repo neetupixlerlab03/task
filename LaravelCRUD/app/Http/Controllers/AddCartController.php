@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AddCart;
 use DB;
+use Auth;
 class AddCartController extends Controller
 {
     public function addcartList()
     {
-       
+        if(!Auth::user()){
+            return redirect('login');
+        }
         $cartItems = AddCart::get();
         
         return view('Phone.cart', compact('cartItems'));
@@ -18,19 +21,24 @@ class AddCartController extends Controller
 
     public function addToCart(Request $request)
     {
+        
         $phone = AddCart::where('phone_id',$request->phone_id)->first();
+       
         if($phone){
+            $npr=  $phone->quantity+$request->quantity;
             AddCart::where('phone_id',$request->phone_id)
             ->update([
-                'price' => $request->price,
+                'price' => $request->price*$npr,
                 'quantity' => $phone->quantity+$request->quantity,
                 'phone_id'=>$request->phone_id,
+                "user_id" =>Auth::user()->id,
                      ]);
         }
         else{
             AddCart::create([
                 'price' => $request->price,
                 'quantity' => $request->quantity,
+                
                 'phone_id'=>$request->phone_id,
                      ]);
 
