@@ -16,38 +16,37 @@
                         <table class="w-full text-sm lg:text-base" cellspacing="0">
                           <thead>
                             <tr class="h-12 uppercase">
-                              <th class="hidden md:table-cell"></th>
+                           
+                              <th class="text-left">image</th>
+
                               <th class="text-left">Name</th>
                               <th class="pl-5 text-left lg:text-right lg:pl-0">
                                 <span class="lg:hidden" title="Quantity">Qtd</span>
                                 <span class="hidden lg:inline">Quantity</span>
                               </th>
+                              
                               <th class="hidden text-right md:table-cell"> price</th>
-                              <th class="hidden text-right md:table-cell"> Remove </th>
+                              <th class="hidden text-right md:table-cell"> Delete </th>
+                              
                             </tr>
                           </thead>
                           <tbody>
                               @foreach ($cartItems as $item)
                             <tr>
-                              <td class="hidden pb-4 md:table-cell">
-                                <a href="#">
-                                 
-                                </a>
-                              </td>
-                              <td>
-                                <a href="#">
-                                  <p class="mb-2 md:ml-4">{{ $item->name }}</p>
-                                  
-                                </a>
-                              </td>
-                              <td class="justify-center mt-6 md:justify-end md:flex">
+                            <td><img src="{{ Storage::url($item->phone->image) }}" height="75" width="75" alt="img" /></p> </td>
+                            <td> 
+                            <p class="mb-2 md:ml-4">{{ $item->phone->name }}</p>
+                            </td>   
+                                <td class="justify-center mt-6 md:justify-end md:flex">
                                 <div class="h-10 w-28">
                                   <div class="relative flex flex-row w-full h-8">
                                     
-                                    <form action="{{ route('addcarts.update') }}" method="POST">
+                                    <form action="{{ route('addcarts.update') }}" method="POST" enctype="multipart/form-data">
                                       @csrf
-                                      <input type="hidden" name="id" value="{{ $item->id}}" >
-                                    <input type="number" name="quantity" value="{{ $item->quantity }}" 
+                                      <input type="hidden" name="id" value="{{ $item->phone_id}}" >
+                                      <input type="number" name="quantity" value="{{ $item->quantity }}" 
+                                     
+                                      
                                     class="w-6 text-center bg-gray-300" />
                                     <button type="submit" class="px-2 pb-2 ml-2 text-white bg-blue-500">update</button>
                                     </form>
@@ -56,8 +55,8 @@
                               </td>
                               <td class="hidden text-right md:table-cell">
                                 <span class="text-sm font-medium lg:text-base">
-                                    ${{ $item->price }}
-                                </span>
+                                       ${{ $item->price }}
+                                       </span>
                               </td>
                               <td class="hidden text-right md:table-cell">
                                 <form action="{{ route('addcarts.delete',[$item->id]) }}" method="POST">

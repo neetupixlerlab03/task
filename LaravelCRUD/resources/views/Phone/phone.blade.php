@@ -17,9 +17,11 @@
                     <span class="mt-2 text-gray-500">${{ $phone->price }}</span>
                     <form action="{{ route('addcarts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" value="{{ $phone->id }}" name="phone_id">
+                        <input type="hidden" value="{{ $phone->id }}" name="id">
                         <input type="hidden" value="{{ $phone->name }}" name="name">
                         <input type="hidden" value="{{ $phone->price }}" name="price">
+                        <input type="hidden" value="{{ $phone->image }}" name="image">
+                        
                         
                         <input type="hidden" value="1" name="quantity">
                         <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>

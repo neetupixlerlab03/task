@@ -44,7 +44,7 @@ Route::get('phone/{id}', [PhoneController::class, 'show'])->name('phones.show');
 Route::post('phone/delete/{id}', [PhoneController::class, 'destroy'])->name('phones.destroyj');
 Route::get('addcartList', [AddCartController::class, 'addcartList'])->name('addcarts.List');
 Route::post('addcarts/store', [AddCartController::class, 'addToCart'])->name('addcarts.store');
-Route::post('addcarts/update-cart', [AddCartController::class, 'updateCart'])->name('addcarts.update');
+Route::post('addcarts/update-cart', [AddCartController::class, 'addToCart'])->name('addcarts.update');
 Route::post('addcarts/delete/{id}', [AddCartController::class, 'removeCart'])->name('addcarts.delete');
 Route::post('addcarts/clear', [AddCartController::class, 'clearAllCart'])->name('addcarts.clear');
 //Test Controller

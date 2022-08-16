@@ -13,8 +13,8 @@ class AddCartController extends Controller
         if(!Auth::user()){
             return redirect('login');
         }
-        $cartItems = AddCart::get();
-        
+        $cartItems = AddCart::with('phone')->where('user_id',Auth::user()->id )->get();
+        // echo"<pre>"; print_r($cartItems); die;
         return view('Phone.cart', compact('cartItems'));
     }
 
@@ -22,24 +22,25 @@ class AddCartController extends Controller
     public function addToCart(Request $request)
     {
         
-        $phone = AddCart::where('phone_id',$request->phone_id)->first();
-       
+        $phone = AddCart::where('phone_id',$request->id)->first();
+      
         if($phone){
-            $npr=  $phone->quantity+$request->quantity;
-            AddCart::where('phone_id',$request->phone_id)
+            $npr=  $request->quantity;
+            AddCart::where('phone_id',$request->id)
             ->update([
-                'price' => $request->price*$npr,
-                'quantity' => $phone->quantity+$request->quantity,
-                'phone_id'=>$request->phone_id,
-                "user_id" =>Auth::user()->id,
+                'price' => $phone->price*$npr,
+                
+ 
+              'quantity' => $request->quantity,
+                
                      ]);
         }
         else{
             AddCart::create([
                 'price' => $request->price,
                 'quantity' => $request->quantity,
-                
-                'phone_id'=>$request->phone_id,
+                'phone_id'=>$request->id,
+                "user_id" =>Auth::user()->id,
                      ]);
 
         }
@@ -50,14 +51,12 @@ class AddCartController extends Controller
 
     public function updateCart(Request $request)
     {
-        AddCart::where("id", $request->id )->update(
-           
-            [
-            'quantity' =>  $request->quantity
-              
-            ]
-        );
-
+        AddCart::where('id',$request->id)
+        ->update([
+            'quantity' => $request->quantity,
+        ]);
+        
+    
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
         return redirect()->route('addcarts.List');
