@@ -8,6 +8,8 @@ use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\AddCartController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TeacherSalaryController;
 
 
 
@@ -58,6 +60,15 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+//teacher controller
+Route::get('teacher', [TeacherController::class, 'create'])->name('teacher.create');
+Route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.store');
+//teacher salary controller
+Route::get('salary',[TeacherSalaryController::class,'create'])->name('create');
+Route::post('salary/store',[TeacherSalaryController::class,'store'])->name('store');
+Route::get('viewList',[TeacherSalaryController::class,'viewList'])->name('viewList');
+
+
 
 
 

@@ -14,7 +14,7 @@ class Phone extends Model
         'image',
         'description',
     ];
-    public function cart()
+    public function addcart()
     {
       return$this->belongsToMany(AddCart::class, 'foreign_key', 'local_key');
 

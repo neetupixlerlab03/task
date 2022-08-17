@@ -29,14 +29,12 @@ class AddCartController extends Controller
             AddCart::where('phone_id',$request->id)
             ->update([
                 'price' => $phone->price*$npr,
-                
- 
-              'quantity' => $request->quantity,
+                'quantity' => $request->quantity,
                 
                      ]);
-        }
-        else{
-            AddCart::create([
+                     }
+                 else{
+                     AddCart::create([
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'phone_id'=>$request->id,
