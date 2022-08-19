@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('teacher_salaries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teacher_id');
+            $table->unsignedbiginteger('teacher_id');
+            $table->foreignId('teacher_id')->references('id')->on('teacher_id');
             $table->integer('teacher_salary');
             $table->timestamps();
         });

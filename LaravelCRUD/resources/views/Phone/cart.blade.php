@@ -48,7 +48,7 @@
                                      
                                       
                                     class="w-6 text-center bg-gray-300" />
-                                    <button type="submit" class="px-2 pb-2 ml-2 text-white bg-blue-500">update</button>
+                                    <button type="submit" name="updatecart" class="px-2 pb-2 ml-2 text-white bg-blue-500">update</button>
                                     </form>
                                   </div>
                                 </div>
@@ -62,6 +62,7 @@
                                 <form action="{{ route('addcarts.delete',[$item->id]) }}" method="POST">
                                   @csrf
                                   <input type="hidden" value="Remove" name="id">
+                                  
                                   <button class="px-4 py-2 text-white bg-red-600">Remove</button>
                               </form>
                                 
@@ -74,9 +75,12 @@
                         <div>
                         
                         </div>
+                       
                         <div>
+                       
                           <form action="{{ route('addcarts.clear')}}" method="POST">
                             @csrf
+                            
                             <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
                           </form>
                         </div>

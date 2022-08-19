@@ -19,6 +19,6 @@
                           
                             </tr>
                             @endforeach
-                        
+                            !! $salaryList->links() !!}
                         </table>
 

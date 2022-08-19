@@ -11,7 +11,9 @@ class PhoneController extends Controller
         if(!Auth::user()){
             return redirect('login');
         }
-        $phones = Phone::all();
+        //$phones = Phone::all();
+        $phones = Phone::paginate(5);
+
         return view('Phone.phone', compact('phones'));
     }
     public function index()

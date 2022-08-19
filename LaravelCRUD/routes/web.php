@@ -67,7 +67,7 @@ Route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.s
 Route::get('salary',[TeacherSalaryController::class,'create'])->name('create');
 Route::post('salary/store',[TeacherSalaryController::class,'store'])->name('store');
 Route::get('viewList',[TeacherSalaryController::class,'viewList'])->name('viewList');
-
+Route::get('custom-pagination', [TestController::class, 'viewList']);
 
 
 

@@ -56,6 +56,8 @@
         @endforeach
     </table>
   
-    {!! $phones->links() !!}
+   
+    
+    
 </body>
 </html>

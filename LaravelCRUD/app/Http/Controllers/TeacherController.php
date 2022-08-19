@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Teacher;
-use App\Models\TeacherSalary;
+
 
 class TeacherController extends Controller
 {

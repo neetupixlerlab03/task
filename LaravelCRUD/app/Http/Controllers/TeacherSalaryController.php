@@ -1,13 +1,10 @@
 <?php
-
-
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\TeacherSalary;
-
+use App\Models\TeacherSalary; 
+ 
 class TeacherSalaryController extends Controller
 
 {     
@@ -15,15 +12,16 @@ class TeacherSalaryController extends Controller
 
        $salaryList = TeacherSalary::with('teacher')->get();
        
-    
+      $salaryList = TeacherSalary::paginate(6); 
+      
+     
         return view('viewList', compact('salaryList'));
     }
 
 
     public function create(Request $request)
     {
-        $salary = TeacherSalary::where('teacher_id',$request->id)->get();
-      
+       
     	return view('createSalary');
     }
     public function store(Request $request)
